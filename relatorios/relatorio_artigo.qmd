@@ -1,0 +1,114 @@
+---
+title: "Comparação da taxa de crescimento de *Artemia salina* entre duas rações"
+subtitle: "Modelo de relatório científico · teste t para duas amostras"
+author: "Nome do autor — instituição (preencher)"
+date: today
+date-format: long
+format:
+  docx:
+    reference-doc: custom-reference.docx
+    toc: false
+    number-sections: true
+    fig-width: 6
+    fig-height: 4
+    fig-dpi: 300
+---
+
+```{r}
+#| label: executar-analise
+#| include: false
+here::i_am("relatorios/relatorio_artigo.qmd")
+source(here::here("R", "analise.R"), encoding = "UTF-8")
+```
+
+```{=html}
+<!-- GUIA DE EDIÇÃO (não aparece no Word)
+Este texto é uma sugestão: preencha a autoria e revise a interpretação.
+Edite a argumentação aqui; altere os cálculos em R/analise.R.
+As expressões R entre crases inserem resultados do script nos parágrafos.
+Mantenha no artigo a síntese dos pressupostos que afeta a interpretação.
+As explicações de como ler cada diagnóstico pertencem ao caderno HTML.
+-->
+```
+
+# Introdução
+
+```{=html}
+<!-- Sugestão de escrita: situe o problema, justifique a comparação e apresente
+o objetivo. Acrescente literatura pertinente, sem inventar informações de coleta. -->
+```
+
+O teste *t* para duas amostras independentes compara a média de uma variável numérica entre dois grupos e avalia se a diferença observada escapa ao acaso. Neste trabalho didático, comparamos a taxa de crescimento de *Artemia salina* submetida a duas rações, farelo de arroz (A) e farelo de babaçu (B), motivados por uma afirmação publicitária de que a primeira seria mais eficiente.
+
+O objetivo foi verificar se a taxa média de crescimento difere entre as rações e identificar qual apresenta a maior média, no alcance de um experimento controlado de laboratório.
+
+# Material e métodos
+
+```{=html}
+<!-- Sugestão de escrita: informe fonte, unidade experimental, variáveis,
+delineamento e procedimentos documentados. -->
+```
+
+`r texto_amostra` A unidade experimental foi o aquário, e a variável resposta foi a taxa de crescimento em miligramas por dia. Preservou-se uma cópia local dos dados e mantiveram-se as duas rações como grupos de comparação.
+
+Compararam-se as médias por teste *t* para duas amostras independentes, com intervalos de confiança de `r ic_percentual`% e nível de significância de `r fmt(100 * alfa, 0)`%. A normalidade dentro de cada grupo foi examinada por Shapiro-Wilk e a igualdade de variâncias pelo teste *F*; conforme esse resultado, adotou-se o *t* de Student ou o *t* de Welch [@student1908; @zar2010]. O tamanho do efeito foi quantificado pelo *d* de Cohen [@cohen1988]. Os cálculos foram executados no R `r paste(R.version$major, R.version$minor, sep = ".")`; as versões dos pacotes e do Quarto acompanham o projeto.
+
+# Resultados
+
+```{=html}
+<!-- Sugestão de escrita: apresente direção, magnitude, incerteza e tamanho do
+efeito; relate a checagem dos pressupostos que limita a interpretação. -->
+```
+
+A @tbl-descritiva resume a taxa de crescimento por ração.
+
+```{r}
+#| label: tbl-descritiva
+#| tbl-cap: "Resumo da taxa de crescimento por ração. DP: desvio padrão; EP: erro padrão da média."
+flextable_ocean(tabela_descritiva_exibir)
+```
+
+`r texto_resultado`
+
+`r texto_efeito`
+
+```{r}
+#| label: tbl-teste
+#| tbl-cap: "Resultado do teste t: método, diferença de médias, intervalo de confiança, t, graus de liberdade, p e tamanho do efeito."
+flextable_ocean(tabela_teste)
+```
+
+A @fig-medias apresenta as médias com seus intervalos de confiança.
+
+```{r}
+#| label: fig-medias
+#| fig-cap: "Média da taxa de crescimento por ração, com intervalo de confiança de 95%."
+grafico_medias
+```
+
+`r texto_pressupostos`
+
+# Discussão
+
+```{=html}
+<!-- Sugestão de escrita: relacione a diferença à afirmação inicial, discuta
+o tamanho do efeito e as limitações. Significância não descreve mecanismo. -->
+```
+
+A diferença estimada responde à afirmação publicitária dentro dos limites deste experimento. O tamanho do efeito distingue a existência da diferença da sua relevância prática. Como o ensaio usou poucas réplicas e condições controladas, a generalização para a produção pede repetição e a consideração de fatores não representados, como temperatura, salinidade e densidade de cultivo.
+
+`r texto_welch`
+
+# Conclusão
+
+```{=html}
+<!-- Sugestão de escrita: responda ao objetivo e delimite o alcance. -->
+```
+
+`r texto_sintese`
+
+# Disponibilidade dos dados e do código
+
+O projeto reúne a cópia local dos dados, o script comentado `R/analise.R` e dois documentos Quarto. O caderno HTML apresenta o percurso completo com a exploração e o detalhe dos pressupostos; este documento seleciona os resultados principais. Ambos executam a mesma análise. As tabelas em CSV, as figuras em PNG e o registro do ambiente ficam em `saida/`, seguindo a proposta de tornar dados, métodos e produtos rastreáveis [@marwick2018].
+
+# Referências

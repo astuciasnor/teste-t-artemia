@@ -1,0 +1,8 @@
+/.quarto/
+**/*.quarto_ipynb
+
+# Arquivos locais do R e do RStudio (nao versionar)
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata

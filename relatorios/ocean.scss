@@ -1,0 +1,16 @@
+/*-- scss:defaults --*/
+$primary: #0F3B5F;
+$link-color: #2E7D8F;
+$font-family-sans-serif: "Calibri", "Segoe UI", sans-serif;
+$headings-font-family: "Cambria", Georgia, serif;
+$code-block-bg: #F3F7F8;
+$code-color: #0F3B5F;
+$toc-active-border: #62B6B7;
+
+/*-- scss:rules --*/
+h1, h2, h3 { color: #0F3B5F; }
+h1 { border-bottom: 2px solid #62B6B7; padding-bottom: .3rem; }
+.quarto-title-banner .subtitle { color: #bfe3e3; }
+blockquote { border-left: 3px solid #62B6B7; background: #F3F7F8; padding: .6rem 1rem; }
+figcaption { color: #365363; }
+
